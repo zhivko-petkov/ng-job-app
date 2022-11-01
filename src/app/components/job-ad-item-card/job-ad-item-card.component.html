@@ -1,0 +1,14 @@
+<article>
+    <h3>{{ jobAd!.title }}</h3>
+
+    <p>{{ jobAd!.description }}</p>
+    <p> {{ jobAd!.categoryId }}</p>
+
+    <div>
+        <!-- <button class="button" (click)="onClick()">Mark as favorite</button> -->
+
+        <a [routerLink]="['/jobAd/edit', jobAd.id]">Edit</a>
+
+        <button class="button" (click)="onDelete()">Delete</button>
+    </div>
+</article>

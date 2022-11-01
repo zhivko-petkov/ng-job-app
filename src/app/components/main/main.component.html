@@ -1,0 +1,9 @@
+<a routerLink="/create">Create ad</a>
+        
+<section>            
+    <app-job-ad-item-card 
+        *ngFor="let j of jobAds"
+        [jobAd]="j" 
+        (deleted)="onItemDeleted($event)">
+    </app-job-ad-item-card>    
+</section>

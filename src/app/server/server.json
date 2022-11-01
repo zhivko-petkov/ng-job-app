@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin Admin",
+      "email": "admin@admin.com",
+      "password": "topsecret"
+    },
+    {
+      "id": 2,
+      "name": "Arnold Kostadinov",
+      "email": "arnold@abv.bg",
+      "password": "topsecret"
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "name": "Kremena Bozduganova",
+      "email": "kremena@larasoft.bg",
+      "company": "Lara Soft",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "name": "Kalin Kostadinov",
+      "email": "kostadinov@cropsoft.bg",
+      "company": "Crop Soft",
+      "password": "topsecret"
+    }
+  ],
+  "jobAds": [
+    {
+      "id": 1,
+      "title": "Java ",
+      "description": "Currently we offer the opportunity to have an impact and contribute to your favorite worldwide brands in various industries. We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
+      "categoryId": 2
+    },
+    {
+      "id": 2,
+      "title": ".NET Developerr",
+      "description": "We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
+      "categoryId": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Full-time"
+    },
+    {
+      "id": 2,
+      "name": "Remote"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<form [formGroup]='formGroup'
+      (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="title" formControlName="title">
+
+    <input type="text" placeholder="Description" formControlName="description">
+
+    <select formControlName="categoryId">
+        <option *ngFor="let category of categories"
+                [value]="category.id">
+            {{ category.name }}
+        </option>
+
+    </select>
+
+    <button type="submit">Save</button>
+</form>
