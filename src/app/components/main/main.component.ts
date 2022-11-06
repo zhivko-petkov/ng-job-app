@@ -21,11 +21,7 @@ export class MainComponent implements OnInit {
       }
     });
   }
-
-  // onItemClick(jobAd: JobAdModel): void {
-  //   this.
-  // }
-
+ 
   onItemDeleted(id: number): void {
     this.jobAdService.delete$(id).subscribe({
       next: () => {
@@ -33,5 +29,7 @@ export class MainComponent implements OnInit {
       }
     });
   }
+
+  
 
 }

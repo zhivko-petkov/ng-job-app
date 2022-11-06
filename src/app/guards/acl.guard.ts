@@ -18,11 +18,13 @@ export class AclGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const loggedUser = this.authService.getUserFromStorage();
 
-        if (loggedUser.role !== 'admin') {
+        if (loggedUser == null) {
             this.router.navigate(['/']);
 
             return false;
         }
+        
+        
 
         return true;
     }

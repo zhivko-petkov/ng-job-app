@@ -3,12 +3,44 @@
 
     <p>{{ jobAd!.description }}</p>
     <p> {{ jobAd!.categoryId }}</p>
+    <p>Likes: {{ jobAd!.likes.length}}</p>
+    <p>Candidates: {{ jobAd!.candidates.length}}</p>
+    <div *ngIf="!isOrganization && isCandidate">
+        <h5 *ngFor="let ca of candidatesView">
+            <p *ngIf="ca.userId == loggedInUserId">
+                {{ ca.email }}: {{ ca.applicationStatus}}
+            </p> 
+        </h5>
+    </div>
+    <div *ngIf="isOrganization && jobAd.organizationId === currentOrganization.id">
 
+        <h5 *ngFor="let ca of candidatesView">
+            {{ ca.email }}: {{ ca.applicationStatus}} 
+            <button *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onApprove(ca, jobAd)">Approve</button>
+            <button *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onDecline(ca, jobAd)">Decline</button>
+        </h5>
+    </div>
     <div>
         <!-- <button class="button" (click)="onClick()">Mark as favorite</button> -->
+        <div *ngIf="isOrganization">
+             <a [routerLink]="['/jobAd/edit', jobAd.id]">Edit</a>
+            <button class="button" (click)="onDelete()">Delete</button>
+            
+        </div>
+        <div *ngIf="jobAd.likes.includes(loggedInUserId)">
+            <button class="button" (click)="onItemClick(jobAd)">Unlike</button>
+        </div>
+        <div *ngIf="!jobAd.likes.includes(loggedInUserId)">
+            <button class="button" (click)="onItemClick(jobAd)">Like</button>
+        </div>
 
-        <a [routerLink]="['/jobAd/edit', jobAd.id]">Edit</a>
+        <div>
+            <button *ngIf="!isOrganization && !isApplied" class="button" (click)="onApplyClick(jobAd)">Apply</button>
+            <p *ngIf="!isOrganization && isApplied">Applied</p>
 
-        <button class="button" (click)="onDelete()">Delete</button>
+        </div>
+
+        
     </div>
+           
 </article>

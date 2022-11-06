@@ -1,5 +1,5 @@
 <div>
-    <form [formGroup]='loginGroup' 
+    <form [formGroup]="loginGroup" 
           (ngSubmit)="onSubmit()">
       <div>
         <input type="text"
@@ -11,6 +11,20 @@
         <input type="password"
                placeholder="Password"
                formControlName="password">
+      </div>
+      <li *ngFor="let role of roles">
+        <input
+                type="radio"
+                id="{{ role }}"
+
+                formControlName="loginRole"
+                name="loginRole"
+                value="{{ role }}"
+        />
+        <label for="{{ role }}" class="ml-1"><p>{{ role }}</p></label>
+    </li>
+      <div>
+
       </div>
   
       <div>

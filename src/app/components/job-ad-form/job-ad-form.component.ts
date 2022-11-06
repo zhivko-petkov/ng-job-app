@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CategoryModel } from 'src/app/models/category.model';
 import { JobAdModel } from 'src/app/models/jobAd.model';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { JobAdService } from 'src/app/services/jobAd.service';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-job-ad-form',
@@ -13,9 +15,14 @@ import { JobAdService } from 'src/app/services/jobAd.service';
 })
 export class JobAdFormComponent implements OnInit {
 
+  isLoggedIn = localStorage.getItem("loggedUser");
+
   formGroup !: FormGroup;
 
   jobAd !: JobAdModel; 
+
+  jobAds !: JobAdModel[]; 
+
   categories !: CategoryModel[]; 
 
   constructor(
@@ -23,7 +30,8 @@ export class JobAdFormComponent implements OnInit {
     private jobAdService: JobAdService,
     private categoriesService: CategoriesService,
     private router: Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute, 
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +51,9 @@ export class JobAdFormComponent implements OnInit {
           this.buildForm(); 
         }
       });
+
+     
+
     }
 
   onSubmit(): void {
@@ -51,31 +62,65 @@ export class JobAdFormComponent implements OnInit {
       return; 
     }
 
-    const data = {
+    
+
+    if(this.isLoggedIn != null) {
+    let currentUser = JSON.parse(this.isLoggedIn);
+
+     const data = {
       ...this.formGroup.value,
       categoryId: parseInt(this.formGroup.value.categoryId)
     };
 
-
-
+    
     if(data.id) {
-      this.jobAdService.put$(data).subscribe({
+      this.jobAdService.getJobsByAddedOrganization$(currentUser.id).subscribe({
+        next: (response: JobAdModel[]) => {
+          this.jobAds = response; 
+        }
+      });
+
+      this.jobAdService.getById$(data.id).subscribe({
+        next: (response: JobAdModel) => {
+        this.jobAd = response; 
+      }
+    }); 
+
+      if(this.authService.jobAdIsOnOrganization(this.jobAd.organizationId)) {
+        data.organizationId = currentUser.id;
+        this.jobAdService.put$(data).subscribe({
         next: () => {
           this.router.navigate(['/list']); 
         }
       });
+      } else {
+        this.router.navigate(['/list']);
+      }
+      
+      
+
+      //console.log(this.jobAds)
     } else {
-      console.log(data); 
+      
       data.id = '';
+      data.organizationId = currentUser.id;
+
       this.jobAdService.post$(data).subscribe({
         next: () => {
           this.router.navigate(['/list']); 
         }
       });
+        
+      } 
+
+    
+
     }
   }
-
+  
+ 
   private buildForm(): void {
+   
     this.formGroup = this.fb.group({
       id: this.jobAd?.id, 
       title: [this.jobAd?.title, [Validators.required]],

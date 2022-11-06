@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService, Roles } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +18,12 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) { }
 
+  roles = Object.values(Roles); 
   ngOnInit(): void {
     this.loginGroup = this.fb.group({
       email: ['', Validators.required], 
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      loginRole: ['', Validators.required]
     });
   }
 

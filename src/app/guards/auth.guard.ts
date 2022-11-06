@@ -19,7 +19,7 @@ export class AuthGuard implements CanLoad {
       const loggedUser = this.authService.getUserFromStorage();
   
       if (!loggedUser) {
-        this.router.navigate(['/auth', 'login']);
+        this.router.navigate(['/login', 'login']);
   
         return false;
       }

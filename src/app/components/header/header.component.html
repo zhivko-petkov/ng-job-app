@@ -1,13 +1,19 @@
 <nav class="navbar">
     <section class="navbar-dashboard">
-        <a class="button-dashboard" href="/">Dashboard</a>
+        <a routerLink="/">Home</a>
+
         <div id="user" *ngIf="isLoggedIn != null">
-            <span class="span">Welcome</span>
-            <a class="button" href="/create">Add Movie</a>
-            <a class="button" (click)="onLogout()">Logout</a>
+            <span class="span">Welcome, </span>
+            <p [textContent]='loggedUserName'></p>
+            <div *ngIf="isOrganization">
+                <a routerLink="/create">Create ad</a>
+            </div>
+            
+            <a class="button" 
+            (click)="onLogout()">Logout</a>
         </div>
         <div id="guest" *ngIf="isLoggedIn === null">
-            <a class="button" href="/login">Login</a>
+            <a routerLink="/login">Login</a>
         </div>
 
     </section>

@@ -12,6 +12,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/auth/login/login.component';
+import { AclGuard } from './guards/acl.guard';
+import { UserItemCardComponent } from './components/user-item-card/user-item-card.component';
 
 
 const routes: Routes = [
@@ -21,11 +23,13 @@ const routes: Routes = [
   }, 
   {
     path: 'create', 
-    component: JobAdFormComponent
+    component: JobAdFormComponent,
+    canActivate: [AclGuard]
   }, 
   {
     path: 'edit/:id', 
-    component: JobAdFormComponent
+    component: JobAdFormComponent,
+    canActivate: [AclGuard]
   }, 
   {
     path: 'login', 
@@ -44,9 +48,10 @@ const routes: Routes = [
     MainComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
     JobAdFormComponent,
     JobAdItemCardComponent,
+    LoginComponent,
+    UserItemCardComponent
   ],
   imports: [
     AppRoutingModule,

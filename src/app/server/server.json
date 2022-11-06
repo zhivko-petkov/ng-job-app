@@ -2,45 +2,88 @@
   "users": [
     {
       "id": 1,
-      "name": "Admin Admin",
-      "email": "admin@admin.com",
-      "password": "topsecret"
+      "name": "Miglena Marinova",
+      "email": "megi@gmail.com",
+      "password": "topsecret",
+      "role": "user"
     },
     {
       "id": 2,
       "name": "Arnold Kostadinov",
       "email": "arnold@abv.bg",
-      "password": "topsecret"
+      "password": "topsecret",
+      "role": "user"
     }
   ],
   "organizations": [
     {
-      "id": 1,
+      "id": 3,
       "name": "Kremena Bozduganova",
       "email": "kremena@larasoft.bg",
       "company": "Lara Soft",
-      "password": "12345"
+      "password": "12345",
+      "role": "organization"
     },
     {
-      "id": 2,
+      "id": 4,
       "name": "Kalin Kostadinov",
       "email": "kostadinov@cropsoft.bg",
       "company": "Crop Soft",
-      "password": "topsecret"
+      "password": "topsecret",
+      "role": "organization"
     }
   ],
   "jobAds": [
     {
       "id": 1,
-      "title": "Java ",
+      "title": "Java",
       "description": "Currently we offer the opportunity to have an impact and contribute to your favorite worldwide brands in various industries. We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
-      "categoryId": 2
+      "categoryId": 2,
+      "organizationId": 4,
+      "likes": [
+        3,
+        4,
+        1
+      ],
+      "candidates": [
+        {
+          "userId": 1,
+          "applicationStatus": "IN PROCESS"
+        }
+      ]
     },
     {
-      "id": 2,
-      "title": ".NET Developerr",
-      "description": "We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
-      "categoryId": 1
+      "id": 3,
+      "title": "Pascal",
+      "description": "The best programming language.",
+      "categoryId": 1,
+      "organizationId": 4,
+      "likes": [
+        3,
+        1
+      ],
+      "candidates": [
+        {
+          "userId": 1,
+          "applicationStatus": "IN PROCESS"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "C# Developer",
+      "description": "The best job here.",
+      "categoryId": 1,
+      "organizationId": 3,
+      "likes": [
+        3
+      ],
+      "candidates": [
+        {
+          "userId": 1,
+          "applicationStatus": "IN PROCESS"
+        }
+      ]
     }
   ],
   "categories": [
