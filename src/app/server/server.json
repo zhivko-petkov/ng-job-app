@@ -36,54 +36,58 @@
   "jobAds": [
     {
       "id": 1,
-      "title": "Java",
+      "title": "Java Developer",
       "description": "Currently we offer the opportunity to have an impact and contribute to your favorite worldwide brands in various industries. We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
       "categoryId": 2,
       "organizationId": 4,
-      "likes": [
-        3,
-        4,
-        1
-      ],
+      "likes": [],
       "candidates": [
         {
           "userId": 1,
-          "applicationStatus": "IN PROCESS"
+          "applicationStatus": "TRY AGAIN"
         }
       ]
     },
     {
       "id": 3,
-      "title": "Pascal",
-      "description": "The best programming language.",
+      "title": "Pascal Developer",
+      "description": "The best programming language. I have an impact and contribute to your favorite worldwide brands in various industries. We strive to develop high-quality services to our clients like project management expertise, as well as extensive IT and process & strategy expertise. We love what we do and think you will too!",
       "categoryId": 1,
       "organizationId": 4,
-      "likes": [
-        3,
-        1
-      ],
+      "likes": [3],
       "candidates": [
         {
           "userId": 1,
-          "applicationStatus": "IN PROCESS"
+          "applicationStatus": "TRY AGAIN"
         }
       ]
     },
     {
       "id": 10,
       "title": "C# Developer",
-      "description": "The best job here.",
+      "description": "The best job here extensive IT and process & strategy expertise. We love what we do and think you will too!Currently we offer the opportunity to have an impact and contribute to your favorite worldwide brands in various",
       "categoryId": 1,
       "organizationId": 3,
       "likes": [
-        3
+        3,
+        1,
+        4
       ],
       "candidates": [
         {
           "userId": 1,
-          "applicationStatus": "IN PROCESS"
+          "applicationStatus": "APPROVED"
         }
       ]
+    },
+    {
+      "id": 11,
+      "title": "React Developer",
+      "description": "The best job here extensive IT and process & strategy expertise. We love what we do and think you will too!Currently we offer the opportunity to have an impact and contribute to your favorite worldwide brands in various",
+      "categoryId": 2,
+      "organizationId": 3,
+      "candidates": [],
+      "likes": []
     }
   ],
   "categories": [

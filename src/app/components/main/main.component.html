@@ -1,7 +1,33 @@
-<section>            
+<section *ngIf="loggedUser" class="pt-5 pb-5">
+  <div class="container">
+    <h1 class="text-dark border-bottom mb-3">All job ads</h1>
+    <div class="row align-items-center justify-content-between">
     <app-job-ad-item-card 
         *ngFor="let j of jobAds"  
         [jobAd]="j" 
         (deleted)="onItemDeleted($event)">
-    </app-job-ad-item-card>    
+    </app-job-ad-item-card>
+
+  </div>
+</div>
+</section>
+
+
+  <!-- Check your status -->
+  <section *ngIf="loggedUser == null" class="bg-light text-dark p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+      <div class="d-sm-flex align-items-center justify-content-between">
+        <div>
+          <h1>Find your <span class="text-primary"> dream work</span></h1>
+          <p class="lead my-4">
+            We are modern website that help you to start your career now.
+          </p>
+          <a class="btn btn-primary btn-lg"  routerLink="/login">
+            View more
+          </a>
+        </div>
+        <img class="img-fluid w-50 d-none d-sm-block" src="https://i.pinimg.com/originals/6e/3f/47/6e3f47bf33153bd352d684a4d0ddea12.gif"  alt="" style="
+    padding-bottom: 3%;">
+      </div>
+    </div>
 </section>

@@ -1,46 +1,69 @@
-<article>
-    <h3>{{ jobAd!.title }}</h3>
-
-    <p>{{ jobAd!.description }}</p>
-    <p> {{ jobAd!.categoryId }}</p>
-    <p>Likes: {{ jobAd!.likes.length}}</p>
-    <p>Candidates: {{ jobAd!.candidates.length}}</p>
-    <div *ngIf="!isOrganization && isCandidate">
-        <h5 *ngFor="let ca of candidatesView">
-            <p *ngIf="ca.userId == loggedInUserId">
-                {{ ca.email }}: {{ ca.applicationStatus}}
-            </p> 
-        </h5>
-    </div>
-    <div *ngIf="isOrganization && jobAd.organizationId === currentOrganization.id">
-
-        <h5 *ngFor="let ca of candidatesView">
-            {{ ca.email }}: {{ ca.applicationStatus}} 
-            <button *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onApprove(ca, jobAd)">Approve</button>
-            <button *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onDecline(ca, jobAd)">Decline</button>
-        </h5>
-    </div>
-    <div>
-        <!-- <button class="button" (click)="onClick()">Mark as favorite</button> -->
-        <div *ngIf="isOrganization">
-             <a [routerLink]="['/jobAd/edit', jobAd.id]">Edit</a>
-            <button class="button" (click)="onDelete()">Delete</button>
-            
+<!--Element-->
+    <div class="card bg-light text-dark mb-3">
+      <div class="card-body text-center">
+        <div class="h1 mb-5">
+          <i class="bi bi-file-medical"></i>
         </div>
-        <div *ngIf="jobAd.likes.includes(loggedInUserId)">
-            <button class="button" (click)="onItemClick(jobAd)">Unlike</button>
-        </div>
-        <div *ngIf="!jobAd.likes.includes(loggedInUserId)">
-            <button class="button" (click)="onItemClick(jobAd)">Like</button>
-        </div>
-
-        <div>
-            <button *ngIf="!isOrganization && !isApplied" class="button" (click)="onApplyClick(jobAd)">Apply</button>
-            <p *ngIf="!isOrganization && isApplied">Applied</p>
-
-        </div>
+        
+        <h3 class="card-title mb-3"> {{ jobAd!.title }} </h3>
 
         
+        <p class="card-title mb-3"> {{ jobAd!.description }} </p>
+        <p class="card-title mb-3"> Likes: {{ jobAd!.likes.length}} </p>
+        <p class="card-title mb-3"> Candidates: {{ jobAd!.candidates.length}} </p>
+
+        <div *ngIf="!isOrganization && isCandidate">
+            <h5 class="card-title mb-3" *ngFor="let ca of candidatesView">
+                <p class="bg-primary text-light" *ngIf="ca.userId == loggedInUserId">
+                    {{ ca.applicationStatus}}
+                </p> 
+            </h5>
+        </div>
+        <div *ngIf="isOrganization && jobAd.organizationId === currentOrganization.id">
+    
+            <h5 class="bg-primary text-light" *ngFor="let ca of candidatesView">
+                {{ ca.email }}: {{ ca.applicationStatus}} 
+                <button class="btn btn-success" *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onApprove(ca, jobAd)">Approve</button>
+                <button class="btn btn-danger" *ngIf="ca.applicationStatus.toString() == 'IN PROCESS'" class="button" (click)="onDecline(ca, jobAd)">Decline</button>
+            </h5>
+        </div>
+        <div>
+            <!-- <button class="button" (click)="onClick()">Mark as favorite</button> -->
+            <div class="card-title mb-3" *ngIf="isOrganization && currentOrganization.id == jobAd.organizationId" >
+                 <a class="btn btn-dark" [routerLink]="['/jobAd/edit', jobAd.id]">Edit</a>
+                <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+                
+            </div>
+            <div class="card-title mb-3" *ngIf="jobAd.likes.includes(loggedInUserId)">
+                <button class="btn btn-warning" (click)="onItemClick(jobAd)">Unlike</button>
+            </div>
+            <div class="card-title mb-3" *ngIf="!jobAd.likes.includes(loggedInUserId)">
+                <button class="btn btn-primary" (click)="onItemClick(jobAd)">Like</button>
+            </div>
+    
+            <div class="card-title mb-3">
+                <button class="btn btn-primary" *ngIf="!isOrganization && !isApplied" class="button" (click)="onApplyClick(jobAd)">Apply</button>
+                <p *ngIf="!isOrganization && isApplied">Applied</p>
+    
+            </div>
+    
+            
+        </div>
+
+        <!--Status-->
+        <!-- <p class="card-title mb-3">
+          <p th:if="*{o.isReady()}" class="bg-success text-light">Completed</p>
+       
+        <p class="card-title mb-3">
+          <p th:unless="*{o.isReady()}" class="bg-warning">In process</p>
+        
+        <p class="card-text">
+          <a th:href="@{/result/order/{id}(id = *{o.id})}" class="btn btn-primary">View</a>
+        </p> -->
+      </div>
     </div>
-           
-</article>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>

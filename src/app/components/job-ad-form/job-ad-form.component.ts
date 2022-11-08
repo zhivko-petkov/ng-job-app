@@ -62,8 +62,6 @@ export class JobAdFormComponent implements OnInit {
       return; 
     }
 
-    
-
     if(this.isLoggedIn != null) {
     let currentUser = JSON.parse(this.isLoggedIn);
 
@@ -88,6 +86,8 @@ export class JobAdFormComponent implements OnInit {
 
       if(this.authService.jobAdIsOnOrganization(this.jobAd.organizationId)) {
         data.organizationId = currentUser.id;
+        data.likes = this.jobAd.likes; 
+        data.candidates = this.jobAd.candidates; 
         this.jobAdService.put$(data).subscribe({
         next: () => {
           this.router.navigate(['/list']); 

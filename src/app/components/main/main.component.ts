@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JobAdModel } from 'src/app/models/jobAd.model';
 import { JobAdService } from 'src/app/services/jobAd.service';
+import { User } from '../auth/models/user.model';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -10,8 +12,10 @@ import { JobAdService } from 'src/app/services/jobAd.service';
 export class MainComponent implements OnInit {
 
   jobAds!: JobAdModel[]; 
+  loggedUser !: User; 
 
-  constructor(private jobAdService: JobAdService) { 
+  constructor(private jobAdService: JobAdService, authService: AuthService) { 
+    this.loggedUser = authService.getUserFromStorage();
   }
 
   ngOnInit(): void {

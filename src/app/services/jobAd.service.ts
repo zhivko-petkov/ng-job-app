@@ -34,6 +34,8 @@ export class JobAdService {
     }
 
     post$(body: JobAdModel): Observable<JobAdModel> {
+        body.candidates = [];
+        body.likes = [];
         return this.http.post<JobAdModel>(this.urlJobAds, body); 
     }
 
